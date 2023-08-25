@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <button onclick="displayChoice('heads')">Heads</button>
+    <button onclick="displayChoice('tails')">Tails</button>
+    <p id="choice"></p>
+    <br>
+    <input id="name-box" onkeydown="pressEnterHandler()">
+    <button onclick="submit()">Submit</button>
+    <p id="name"></p>
+    <input id="empty" onkeyup="keyUpHandler()">
+    <p id="para"></p>
+    <script>
+      let displayChoice = (choice) => {
+        document.querySelector('#choice').innerText = 'You chose: ' + choice;
+      }
+
+      let submit = () => {
+        let text = document.querySelector('#name-box').value;
+        document.querySelector('#name').innerText = 'Your name is: ' + text;
+      }
+
+      let pressEnterHandler = () => {
+        if(event.key === 'Shift'){
+          document.querySelector('#name').innerText = 'Your name is: ' 
+              + document.querySelector('#name-box').value;
+        }
+      }
+
+      let keyUpHandler = () => {
+        document.querySelector('#para').innerText = document.querySelector('#empty').value;
+      }
+    </script>
+  </body>
+</html>

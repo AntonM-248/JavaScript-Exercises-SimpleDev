@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      DOM
+    </title>
+    <style>
+      .js-button2{
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="hello">Hello</button>
+    <button class="js-button2">Another button</button>
+    <script>
+      document.querySelector('button').innerHTML='Fred Derst';
+      document.querySelector('.js-button2').innerHTML='yellowButton';
+
+      const buttonElem = document.querySelector('.js-button');
+      // console.log(document.title);
+      // document.title='changed';
+      // console.log(document.body);
+      // document.body.innerHTML = '<button>Good Job!</button>';
+
+      // document.body.innerHTML = 'hello'; 
+      // document.title = 'title';
+    </script>
+  </body>
+</html>

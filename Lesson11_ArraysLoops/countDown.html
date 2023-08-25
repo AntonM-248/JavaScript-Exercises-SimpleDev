@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <input id="input" onkeydown="enteredInputHandler()">
+    <div id="count"></div>
+  </body>
+  <script>
+    let enteredInputHandler = () => {
+      if(event.key === 'Enter'){
+        let numEntered = Number(document.querySelector('#input').value);
+        document.querySelector('#count').innerHTML = '';
+        for(let i = numEntered; i > -1; i--){
+          document.querySelector('#count').innerHTML += `<p>${i}</p>`;
+        }
+      }
+    }
+  </script>
+</html>

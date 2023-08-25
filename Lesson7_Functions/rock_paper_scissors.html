@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="
+      displayMatchOutcome(rock)
+    ">Rock</button>
+
+    <button onclick="
+      displayMatchOutcome(paper)
+    ">Paper</button>
+
+    <button 
+    onclick="
+      displayMatchOutcome(scissors)
+    ">Scissors</button>
+
+    <script>
+      let computerMove = '';
+      let result = '';
+      const rock = 'rock';
+      const scissors = 'scissors';
+      const paper = 'paper';
+      let moves = [rock, paper, scissors];
+
+      function pickComputerMove() {
+        let num = Math.random();
+        while(num < 1){
+            num *= 10;
+        }
+        computerMove = moves[Math.floor(num) % 3];
+      }
+
+      function determineResult(choice){
+        if (computerMove === rock && choice === scissors 
+            || computerMove === scissors && choice === paper 
+            || computerMove === paper && choice === rock) {
+          result = 'You lose.';
+        } else if (computerMove === choice) {
+          result = 'Tie.';
+        } else {
+          result = 'You win.';
+        }
+        return result;
+      }
+
+      function getComputerMove(){
+        return computerMove;
+      }
+
+      function getResult(){
+        return result;
+      }
+
+      function displayMatchOutcome(choice){
+        pickComputerMove();
+        determineResult(choice);
+        alert('You picked ' + choice + '. Computer picked ' + getComputerMove() + '. ' + getResult());
+      }
+    </script>
+  </body>
+</html>
