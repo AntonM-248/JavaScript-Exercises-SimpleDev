@@ -1,4 +1,4 @@
-#Javascript Exercises
+# Javascript Exercises
 
 This repository contains a collection of 
 simple javascript practice exercise provided 
