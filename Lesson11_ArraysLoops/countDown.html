@@ -4,8 +4,8 @@
 
   </head>
   <body>
-    <input id="input" onkeydown="enteredInputHandler()">
-    <div id="count"></div>
+    <input id='input' onkeydown='enteredInputHandler()'>
+    <div id='count'></div>
   </body>
   <script>
     let enteredInputHandler = () => {
@@ -17,5 +17,57 @@
         }
       }
     }
+
+    let incrementNums = (increment, arr) => {
+      console.log(arr.length)
+      arr.map((e, i) => {
+        arr[i] = e + increment;
+      })
+    }
+
+    let nums = new Array(1,2,3,32,52,83);
+    //incrementNums(100, nums);
+    
+    let countWords = (words) => {
+      let wordCounts = {};
+      console.log(words.length);
+      for(let i = 0; i < words.length; i++) {
+        if(wordCounts.hasOwnProperty(words[i])){
+          wordCounts[words[i]] += 1;
+        }
+        else{
+          wordCounts[words[i]] = 1;
+        }
+      }
+      console.log(wordCounts);
+    }
+
+    
+    //countWords(['fly', 'fly', 'fly', 'high', 'high', 'high', 'high', 'single', 'riot', 'riot']);
+
+    let fizzBuzz = () => {
+      for(let i = 0; i < 20; i++){
+        let string = String(i);
+        if(i % 3 === 0){
+          string = string.replace(String(i), '') + 'Fizz';
+        }
+        if(i % 5 === 0){
+          string = string.replace(String(i), '') + 'Buzz';
+        }
+        console.log(string);
+      }
+    }
+
+    function unique(array) {
+      let uniqueArr = new Array();
+      for (let i = 0; i < array.length; i++) {
+        if(!uniqueArr.find(e => e === array[i])){
+          uniqueArr.push(array[i]);
+        }
+      }
+      console.log(uniqueArr);
+    }
+
+    unique(['fly', 'fly', 'fly', 'high', 'high', 'high', 'high', 'single', 'riot', 'riot']);
   </script>
 </html>
