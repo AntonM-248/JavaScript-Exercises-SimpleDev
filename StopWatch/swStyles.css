@@ -1,0 +1,32 @@
+button{
+  padding: 15px;
+  font-size: large;
+  margin: 5px;
+}
+
+#Start{
+  background-color: green;
+  border-color: yellow;
+  color: yellow;
+}
+
+#Stop{
+  background-color: red;
+}
+
+#Reset{
+  background-color: blue;
+  border-color: aqua;
+  color: aqua;
+}
+
+#Time{
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 100px;
+  display: inline-block;
+  font-size: x-large;
+  Padding: 50px;
+  margin: 60px;
+}
