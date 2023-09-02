@@ -1,5 +1,9 @@
+import {cart} from '../data/cart.js';
+import {products} from '../data/products.js';
+
 let productsHTML = '';
 let cartQuantity = 0;
+let addedToCartTimeOutIdMap = new Map();
 
 products.forEach((product) => {
   productsHTML += `
@@ -42,7 +46,7 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart in-cart-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -56,27 +60,43 @@ products.forEach((product) => {
   `;
 });
 
-  document.querySelector('.products-grid').innerHTML = productsHTML;
+document.querySelector('.products-grid').innerHTML = productsHTML;
 
-  document.querySelectorAll('.add-to-cart-button').forEach(button => {
-    button.addEventListener('click', () => {
-        let existingItem = cart.find(prod => prod.productId === button.dataset.productId);
-        let selector = document.querySelector(`.js-quantity-selector-${button.dataset.productId}`);
-        let quantity = Number(selector.value);
-        let {productId} = button.dataset;
-        if(existingItem){
-          existingItem.quantity += quantity;
-        }
-        else{
-          cart.push({
-            productId,
-            quantity
-          })
-        }
-        cartQuantity += quantity;
-        console.log(cart);
-        document.querySelector('.cart-quantity').innerText = cartQuantity;
-    });
+document.querySelectorAll('.add-to-cart-button').forEach(button => {
+  button.addEventListener('click', () => {
+      let {productId} = button.dataset;
+      let existingItem = cart.find(prod => prod.productId === productId);
+      let selector = document.querySelector(`.js-quantity-selector-${productId}`);
+      let quantity = Number(selector.value);
+      showAddedMessage(productId);
+      modifyCartContents(existingItem, quantity, productId);
+      modifyCartQuantity(quantity);
   });
+});
 
-  //document.querySelectorAll('select').forEach(s => console.log(s.options[s.options.selectedIndex].innerHTML));
+let showAddedMessage = (productId) => {
+  let addedMessage = document.querySelector(`.in-cart-${productId}`);
+  addedMessage.classList.add('opacity-one');
+  let removeOpacity = () => addedMessage.classList.remove('opacity-one');
+  if(addedToCartTimeOutIdMap.has(productId)){
+    clearTimeout(addedToCartTimeOutIdMap.get(productId));
+  }
+  addedToCartTimeOutIdMap.set(productId, setTimeout(removeOpacity, 2000));
+}
+
+let modifyCartContents = (existingItem, quantity, productId) => {
+  if(existingItem){
+    existingItem.quantity += quantity;
+  }
+  else{
+    cart.push({
+      productId,
+      quantity
+    })
+  }
+}
+
+let modifyCartQuantity = (quantity) => {
+  cartQuantity += quantity;
+  document.querySelector('.cart-quantity').innerText = cartQuantity;
+}
